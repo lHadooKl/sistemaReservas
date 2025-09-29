@@ -1,0 +1,11 @@
+logica\Avion.class
+logica\Usuario.class
+logica\Vuelo.class
+logica\Reserva.class
+logica\AgenteVentas.class
+logica\PersonalCabina.class
+com\mycompany\sistemareservas\JakartaRestConfiguration.class
+logica\Piloto.class
+logica\Persona.class
+com\mycompany\sistemareservas\resources\JakartaEE11Resource.class
+logica\Pasajero.class
