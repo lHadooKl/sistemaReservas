@@ -5,6 +5,7 @@
 package rest;
 
 import jakarta.inject.Inject;
+import jakarta.validation.Valid;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
@@ -48,14 +49,14 @@ public class ReservaResource {
     }
     
     @POST
-    public Response crear(Reserva reserva) {
+    public Response crear( @Valid Reserva reserva ) {
         reservaService.crearReserva(reserva);
         return Response.status(Response.Status.CREATED).entity(reserva).build();
     }
     
     @PUT
     @Path("/{id}")
-    public Response actualizar(@PathParam("id") int id, Reserva reserva) {
+    public Response actualizar(@PathParam("id") int id, @Valid Reserva reserva) {
         Reserva existente = reservaService.obtenerReserva(id);
         if (existente == null) {
             return Response.status(Response.Status.NOT_FOUND).build();

@@ -9,6 +9,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import java.util.List;
@@ -57,18 +58,22 @@ public class Vuelo {
     private String hora_fin_vuelo;
     
     @ManyToOne
+    @NotNull(message = "El Piloto es obligatorio")
     @JoinColumn(name="id_piloto")
     private Piloto pilot;
     
     @ManyToOne
+    @NotNull(message = "El PersonalCabina es obligatorio")
     @JoinColumn(name="id_personal")
     private PersonalCabina personal;
     
     @ManyToOne
+    @NotNull(message = "El Avion es obligatorio")
     @JoinColumn(name="id_avion")
     private Avion avio;
     
     @ManyToOne
+    @NotNull(message = "El AgenteVentas es obligatorio")
     @JoinColumn(name="id_agente")
     private AgenteVentas agente;
     

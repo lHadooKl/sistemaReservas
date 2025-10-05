@@ -1,6 +1,7 @@
 package rest;
 
 import jakarta.inject.Inject;
+import jakarta.validation.Valid;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
@@ -40,14 +41,14 @@ public class AvionResource {
     }
     
     @POST
-    public Response crear(Avion avion) {
+    public Response crear(@Valid Avion avion) {
         avionService.crearAvion(avion);
         return Response.status(Response.Status.CREATED).entity(avion).build();
     }
     
     @PUT
     @Path("/{id}")
-    public Response actualizar(@PathParam("id") int id, Avion avion) {
+    public Response actualizar(@PathParam("id") int id, @Valid Avion avion) {
         Avion existente = avionService.obtenerAvion(id);
         if (existente == null) {
             return Response.status(Response.Status.NOT_FOUND).build();

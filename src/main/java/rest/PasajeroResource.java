@@ -2,6 +2,7 @@
 package rest;
 
 import jakarta.inject.Inject;
+import jakarta.validation.Valid;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
@@ -31,7 +32,7 @@ public class PasajeroResource {
     }
     
     @POST
-    public Response crear(Pasajero pasajero) {
+    public Response crear( @Valid Pasajero pasajero) {
         pasajeroService.crearPasajero(pasajero);
         return Response.status(Response.Status.CREATED).entity(pasajero).build();
     }
@@ -49,7 +50,7 @@ public class PasajeroResource {
 
     @PUT
     @Path("/{id}")
-    public Response actualizar(@PathParam("id") int id, Pasajero pasajero) {
+    public Response actualizar(@PathParam("id") int id, @Valid Pasajero pasajero) {
         Pasajero existente = pasajeroService.obtenerPasajero(id);
         if (existente == null) {
             return Response.status(Response.Status.NOT_FOUND).build();

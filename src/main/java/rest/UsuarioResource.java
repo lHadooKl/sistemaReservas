@@ -1,6 +1,7 @@
 package rest;
 
 import jakarta.inject.Inject;
+import jakarta.validation.Valid;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
@@ -40,14 +41,14 @@ public class UsuarioResource {
     }
     
     @POST
-    public Response crear(Usuario usuario) {
+    public Response crear( @Valid Usuario usuario) {
         usuarioService.crearUsuario(usuario);
         return Response.status(Response.Status.CREATED).entity(usuario).build();
     }
     
     @PUT
     @Path("/{id}")
-    public Response actualizar(@PathParam("id") int id, Usuario usuario) {
+    public Response actualizar(@PathParam("id") int id, @Valid Usuario usuario) {
         Usuario existente = usuarioService.obtenerUsuario(id);
         if (existente == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
