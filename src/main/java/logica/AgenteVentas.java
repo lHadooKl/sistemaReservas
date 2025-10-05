@@ -1,6 +1,7 @@
 
 package logica;
 
+import jakarta.json.bind.annotation.JsonbTransient;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
@@ -17,6 +18,7 @@ public class AgenteVentas extends Persona implements Serializable {
     private String oficina;
     
     @OneToMany(mappedBy="agente")
+    @JsonbTransient
     private List<Vuelo> ListaVuelo;
 
     public AgenteVentas() {

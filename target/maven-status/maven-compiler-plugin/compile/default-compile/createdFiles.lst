@@ -5,6 +5,7 @@ com\mycompany\sistemareservas\JakartaRestConfiguration.class
 logica\Persona.class
 servicios\ReservaService.class
 rest\AvionResource.class
+rest\PersonalResource.class
 logica\Avion.class
 servicios\VueloService.class
 rest\ReservaResource.class

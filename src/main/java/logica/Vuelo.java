@@ -1,6 +1,7 @@
 
 package logica;
 
+import jakarta.json.bind.annotation.JsonbTransient;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,7 +16,7 @@ import jakarta.validation.constraints.Size;
 import java.util.List;
 
 @Entity
-public class Vuelo {
+public class Vuelo{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -75,6 +76,7 @@ public class Vuelo {
     @ManyToOne
     @NotNull(message = "El AgenteVentas es obligatorio")
     @JoinColumn(name="id_agente")
+    @JsonbTransient
     private AgenteVentas agente;
     
     @OneToMany(mappedBy="vuelo")
