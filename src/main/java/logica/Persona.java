@@ -7,6 +7,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import java.io.Serializable;
 
 @Entity
@@ -16,11 +19,28 @@ public class Persona implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    
+    @NotBlank(message = "El DNI es obligatorio")
+    @Size(min = 6, max = 20, message = "El DNI debe tener entre 6 y 20 caracteres")
     private String dni;
+    
+    @NotBlank(message = "El nombre es obligatorio")
+    @Size(max = 50, message = "El nombre no puede superar los 50 caracteres")
     private String nombre;
+    
+    @NotBlank(message = "El apellido es obligatorio")
+    @Size(max = 50, message = "El apellido no puede superar los 50 caracteres")
     private String apellidos;
+    
+    @NotBlank(message = "El teléfono es obligatorio")
+    @Pattern(regexp = "\\d{7,15}", message = "El teléfono debe tener entre 7 y 15 dígitos")
     private String telefono;
+    
+    @NotBlank(message = "La dirección es obligatoria")
+    @Size(max = 100, message = "La dirección no puede superar los 100 caracteres")
     private String direccion;
+    
+    @NotBlank(message = "La fecha de nacimiento es obligatoria")
     private String fecha_nac;
 
     public Persona() {

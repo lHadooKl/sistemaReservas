@@ -6,6 +6,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.List;
 
@@ -15,7 +17,9 @@ public class Avion implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_avion;
+    @NotBlank(message = "El modelo del avion no puede estar vacio")
     private String modelo;
+    @Min(value = 1, message = "La capacidad debe de ser mayo a cero")
     private int capacidad;
     
     @OneToMany(mappedBy="avio")

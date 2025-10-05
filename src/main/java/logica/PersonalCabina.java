@@ -3,12 +3,16 @@ package logica;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.List;
 
 @Entity
 public class PersonalCabina extends Persona implements Serializable {
-
+    
+    @NotBlank(message = "El rango es obligatorio")
+    @Size(max = 50, message = "El rango no puede superar los 50 caracteres")
     private String rango;
     @OneToMany(mappedBy="personal")
     private List<Vuelo> ListaVuelo;

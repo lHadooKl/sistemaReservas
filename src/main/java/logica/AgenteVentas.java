@@ -3,6 +3,8 @@ package logica;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.List;
 
@@ -10,7 +12,10 @@ import java.util.List;
 @Entity
 public class AgenteVentas extends Persona implements Serializable {
     
+    @NotBlank(message = "El nombre de la oficiona no puede estar vacio")
+    @Size(max = 100, message = "El nombre de la oficina no puede superar los 100 caracteres")
     private String oficina;
+    
     @OneToMany(mappedBy="agente")
     private List<Vuelo> ListaVuelo;
 

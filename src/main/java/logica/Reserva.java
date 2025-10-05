@@ -7,21 +7,32 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 
 @Entity
 public class Reserva {
-
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_reserva;
+    @NotBlank(message = "La fecha de reserva es obligatoria")
+    @Pattern(
+        regexp = "^\\d{4}-\\d{2}-\\d{2}$",
+        message = "La fecha de reserva debe tener el formato YYYY-MM-DD"
+    )
     private String fecha_reserva;
+    
+    @NotBlank(message = "El asiento es obligatorio")
     private String asiento;
     
+    @NotNull(message = "El Pasajero es obligatorio")
     @ManyToOne
     @JoinColumn(name="id_pasajero")
     private Pasajero pasaje;
     
+    @NotNull(message = "El Vuelo es obligatorio")
     @ManyToOne
     @JoinColumn(name="id_vuelo")
     private Vuelo vuelo;
